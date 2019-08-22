@@ -1,0 +1,20 @@
+type Establishment @model {
+  id: ID!
+  name: String!
+  streetAddress: String!
+  city: String!
+  state: String!
+  zipcode: String!
+  phone: String!
+  website: String!
+  uid: String!
+  beers: [Beer] @connection(name: "EstablishmentBeers")
+}
+type Beer @model {
+  id: ID!
+  name: String!
+  description: String!
+  ibu: Int!
+  abv: Float!
+  establishment: Establishment @connection(name: "EstablishmentBeers")
+}

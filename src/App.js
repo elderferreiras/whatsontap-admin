@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import './App.scss';
+import { BrowserRouter as Router, Route } from "react-router-dom"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Sidebar from './components/UI/Sidebar/Sidebar';
+import Navbar from './components/UI/Nav/Nav';
+import Footer from './components/UI/Footer/Footer';
+
+import Amplify from 'aws-amplify';
+import aws_exports from './aws-exports';
+import {withAuthenticator} from "aws-amplify-react";
+import Establishments from "./containers/Establihsments/Establishments";
+import Beers from "./containers/Beers/Beers";
+
+Amplify.configure(aws_exports);
+
+class App extends Component {
+    render() {
+        return (
+            <Router>
+                <div className="App">
+                    <Navbar/>
+                    <div id="wrapper">
+                        <Sidebar/>
+                        <div id="content-wrapper">
+                            <div className="container-fluid">
+                                <Route path="/" exact component={Establishments} />
+                                <Route path="/establishments/" component={Establishments} />
+                                <Route path="/beers/" component={Beers} />
+                            </div>
+                            <Footer/>
+                        </div>
+                    </div>
+                </div>
+            </Router>
+        );
+    }
 }
 
-export default App;
+export default withAuthenticator(App);
