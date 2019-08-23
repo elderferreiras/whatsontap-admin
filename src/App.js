@@ -11,6 +11,7 @@ import aws_exports from './aws-exports';
 import {withAuthenticator} from "aws-amplify-react";
 import Establishments from "./containers/Establihsments/Establishments";
 import Beers from "./containers/Beers/Beers";
+import Establishment from "./components/Establishment/Establishment";
 
 Amplify.configure(aws_exports);
 
@@ -25,9 +26,11 @@ class App extends Component {
                         <div id="content-wrapper">
                             <div className="container-fluid">
                                 <Route path="/" exact component={Establishments} />
-                                <Route path="/establishments/" component={Establishments} />
-                                <Route path="/beers/" component={Beers} />
+                                <Route path="/establishments/" component={Establishments} exact/>
+                                <Route path="/establishments/create" component={Establishment} exact/>
+                                <Route path="/beers/" component={Beers} exact/>
                             </div>
+
                             <Footer/>
                         </div>
                     </div>
