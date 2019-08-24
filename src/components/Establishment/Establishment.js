@@ -1,8 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import {getEstablishment} from '../../graphql/queries';
-import {Table} from 'react-bootstrap';
+import {Col, Row, Table} from 'react-bootstrap';
 import {API, graphqlOperation} from "aws-amplify";
+import { Button, ButtonToolbar } from "react-bootstrap";
+import {deleteEstablishment} from "../../graphql/mutations";
 
 class Establishment extends Component {
     state = {
@@ -24,6 +26,14 @@ class Establishment extends Component {
             this.setState({establishment: res.data.getEstablishment});
         });
     }
+
+    deleteHandler = () => {
+        API.graphql(graphqlOperation(deleteEstablishment, {input: {id: this.state.establishment.id}})).then(res => {
+            this.props.history.push({
+                pathname: '/establishments'
+            });
+        });
+    };
 
     render() {
         return (
@@ -78,6 +88,19 @@ class Establishment extends Component {
                     </tr>
                     </tbody>
                 </Table>
+                <ButtonToolbar>
+                    <Row className="mb-2">
+                        <Col>
+                            <Link to={"/establishments/edit/" + this.state.establishment.id}>
+                                <Button variant="light">Edit</Button>
+                            </Link>
+                        </Col>
+
+                        <Col>
+                            <Button variant="danger" onClick={this.deleteHandler}>Delete</Button>
+                        </Col>
+                    </Row>
+                </ButtonToolbar>
             </Fragment>
         );
     }

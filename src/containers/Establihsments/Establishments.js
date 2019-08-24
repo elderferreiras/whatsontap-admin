@@ -50,7 +50,7 @@ class Establishments extends Component {
                                     return (
                                         <tr key={establishment.id}>
                                             <td><Link
-                                                to={"/establishments/" + establishment.id}>{establishment.name}</Link>
+                                                to={"/establishments/show/" + establishment.id}>{establishment.name}</Link>
                                             </td>
                                             <td>{establishment.phone}</td>
                                             <td>{establishment.website}</td>

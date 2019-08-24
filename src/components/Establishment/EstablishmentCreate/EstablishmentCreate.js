@@ -1,51 +1,36 @@
 import React, {Component, Fragment} from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import EstablishmentForm from '../EstablishmentForm/EstablishmentForm';
-import { API, graphqlOperation } from "aws-amplify";
+import {API, graphqlOperation} from "aws-amplify";
 import * as mutations from '../../../graphql/mutations';
-class Establishment extends Component {
+import AddressSelector from '../../../helpers/addressSelector';
+
+class EstablishmentCreate extends Component {
     state = {
         establishment: {
             id: '',
             name: '',
-            streetAddress:'',
-            city:'',
-            state:'',
-            zipcode:'',
-            phone:'',
-            website:'',
+            streetAddress: '',
+            city: '',
+            state: '',
+            zipcode: '',
+            phone: '',
+            website: '',
             uid: ''
         }
     };
 
     addressSelectHandler = (place) => {
-        const componentForm = {
-            street_number: 'short_name',
-            route: 'long_name',
-            locality: 'long_name',
-            administrative_area_level_1: 'short_name',
-            country: 'long_name',
-            postal_code: 'short_name'
-        };
-
-        let values = {};
-
-        for (let i = 0; i < place.address_components.length; i++) {
-            let addressType = place.address_components[i].types[0];
-            if (componentForm[addressType]) {
-                values[addressType] = place.address_components[i][componentForm[addressType]];
-            }
-        }
-
+        const extracted = AddressSelector(place);
 
         const establishment = {...this.state.establishment};
 
-        establishment.name = place.name;
-        establishment.streetAddress = values.street_number + ' ' + values.route;
-        establishment.city = values.locality;
-        establishment.state = values.administrative_area_level_1;
-        establishment.zipcode = values.postal_code;
-        establishment.uid = place.place_id;
+        establishment.name = extracted.name;
+        establishment.streetAddress = extracted.streetAddress;
+        establishment.city = extracted.city;
+        establishment.state = extracted.state;
+        establishment.zipcode = extracted.zipcode;
+        establishment.uid = extracted.uid;
 
         this.setState({establishment: establishment});
     };
@@ -58,12 +43,14 @@ class Establishment extends Component {
         this.setState({establishment: establishment});
     };
 
-    submitHandler = async (event) => {
+    submitHandler = (event) => {
         event.preventDefault();
 
-        const newTodo = await API.graphql(graphqlOperation(mutations.createEstablishment, {input: this.state.establishment}));
-
-        console.log(newTodo);
+        API.graphql(graphqlOperation(mutations.createEstablishment, {input: this.state.establishment})).then(res => {
+            this.props.history.push({
+                pathname: '/establishments/show/' + res.data.createEstablishment.id
+            });
+        });
     };
 
     render() {
@@ -89,4 +76,4 @@ class Establishment extends Component {
     }
 }
 
-export default Establishment;
+export default EstablishmentCreate;

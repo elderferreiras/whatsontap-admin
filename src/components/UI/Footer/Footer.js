@@ -5,7 +5,7 @@ const footer = () => {
         <footer className="sticky-footer">
             <div className="container my-auto">
                 <div className="copyright text-center my-auto">
-                    <span>Copyright © Your Website 2019</span>
+                    <span>Copyright © What's on tap? {1900 + (new Date().getYear())}</span>
                 </div>
             </div>
         </footer>

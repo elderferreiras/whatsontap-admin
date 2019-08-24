@@ -13,6 +13,7 @@ import Establishments from "./containers/Establihsments/Establishments";
 import Beers from "./containers/Beers/Beers";
 import EstablishmentCreate from "./components/Establishment/EstablishmentCreate/EstablishmentCreate";
 import Establishment from "./components/Establishment/Establishment";
+import EstablishmentEdit from "./components/Establishment/EstablishmentEdit/EstablishmentEdit";
 
 Amplify.configure(aws_exports);
 
@@ -29,7 +30,8 @@ class App extends Component {
                                 <Route path="/" exact component={Establishments} />
                                 <Route path="/establishments/" component={Establishments} exact/>
                                 <Route path="/establishments/create" component={EstablishmentCreate} exact/>
-                                <Route path="/establishments/:id" component={Establishment} exact/>
+                                <Route path="/establishments/show/:id" component={Establishment} exact/>
+                                <Route path="/establishments/edit/:id" component={EstablishmentEdit} exact/>
                                 <Route path="/beers/" component={Beers} exact/>
                             </div>
 
