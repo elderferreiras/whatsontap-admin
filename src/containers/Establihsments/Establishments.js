@@ -33,6 +33,9 @@ class Establishments extends Component {
                             <Button variant="light">Create Establishment</Button>
                         </Link>
                         </Col>
+                        <Link to="/establishments/import">
+                            <Button variant="light">Import Establishments</Button>
+                        </Link>
                     </Row>
                     <div className="table-responsive">
                         <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
