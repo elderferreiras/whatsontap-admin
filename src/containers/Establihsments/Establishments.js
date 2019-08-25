@@ -1,23 +1,36 @@
 import React, {Component} from 'react';
 import {API, graphqlOperation} from "aws-amplify";
 import {listEstablishments} from "../../graphql/queries";
-import {Button, Row, Col} from 'react-bootstrap';
+import {Button, Row, Col, Pagination} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
 class Establishments extends Component {
     state = {
         establishments: [],
-        updated: new Date()
+        nextToken: null
     };
 
     componentDidMount() {
-        this.listEstablishments().then(res => {
-            this.setState({establishments: res.data.listEstablishments.items});
-        });
+        this.listEstablishments();
     }
 
-    listEstablishments = async () => {
-        return API.graphql(graphqlOperation(listEstablishments));
+    nextHandler = () => {
+       this.listEstablishments();
+    };
+
+    listEstablishments = () => {
+        let variables = {limit: 20};
+
+        if (this.state.nextToken) {
+            variables.nextToken = this.state.nextToken;
+        }
+
+        API.graphql(graphqlOperation(listEstablishments, variables)).then(res => {
+            this.setState({
+                establishments: res.data.listEstablishments.items,
+                nextToken: res.data.listEstablishments.nextToken
+            });
+        });
     };
 
     render() {
@@ -44,7 +57,6 @@ class Establishments extends Component {
                                 <th>Establishment</th>
                                 <th>Phone</th>
                                 <th>Website</th>
-                                <th>Address</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -57,7 +69,6 @@ class Establishments extends Component {
                                             </td>
                                             <td>{establishment.phone}</td>
                                             <td>{establishment.website}</td>
-                                            <td>{establishment.streetAddress}</td>
                                         </tr>
                                     );
                                 })
@@ -65,6 +76,9 @@ class Establishments extends Component {
                             </tbody>
                         </table>
                     </div>
+                    <Pagination>
+                        <Pagination.Next onClick={this.nextHandler}/>
+                    </Pagination>
                 </div>
             </div>
         );
