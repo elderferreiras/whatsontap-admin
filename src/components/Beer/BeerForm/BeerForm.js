@@ -6,6 +6,7 @@ import {getBeer} from "../../../graphql/queries";
 const beerForm = (props) => {
     if (props.beerId) {
         API.graphql(graphqlOperation(getBeer, {id: props.beerId})).then(res => {
+            console.log(res);
             const beer = res.data.getBeer;
             for (let i in beer) {
                 if (beer.hasOwnProperty(i)) {

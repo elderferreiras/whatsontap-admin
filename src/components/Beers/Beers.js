@@ -13,7 +13,7 @@ const beers = (props) => {
     };
 
     return (
-        <Container>
+        <Container style={{margin: 0, padding: 0}}>
             <Row>
                 {handlerBeers()}
             </Row>

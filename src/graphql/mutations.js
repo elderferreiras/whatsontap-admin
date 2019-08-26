@@ -128,20 +128,6 @@ export const deleteBeer = `mutation DeleteBeer($input: DeleteBeerInput!) {
     description
     ibu
     abv
-    establishment {
-      id
-      name
-      streetAddress
-      city
-      state
-      zipcode
-      phone
-      website
-      uid
-      beers {
-        nextToken
-      }
-    }
   }
 }
 `;

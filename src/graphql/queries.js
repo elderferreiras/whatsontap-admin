@@ -64,20 +64,6 @@ export const getBeer = `query GetBeer($id: ID!) {
     description
     ibu
     abv
-    establishment {
-      id
-      name
-      streetAddress
-      city
-      state
-      zipcode
-      phone
-      website
-      uid
-      beers {
-        nextToken
-      }
-    }
   }
 }
 `;

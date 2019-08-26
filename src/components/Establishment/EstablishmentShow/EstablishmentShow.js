@@ -6,8 +6,8 @@ const establishmentShow = (props) => {
         <Table striped bordered hover size="sm">
             <tbody>
             <tr>
-                <th>ID</th>
-                <td>{props.establishment.id}</td>
+                <th>UID</th>
+                <td>{props.establishment.uid}</td>
             </tr>
             <tr>
                 <th>Name</th>
@@ -36,10 +36,6 @@ const establishmentShow = (props) => {
             <tr>
                 <th>Website</th>
                 <td>{props.establishment.website}</td>
-            </tr>
-            <tr>
-                <th>Google place ID</th>
-                <td>{props.establishment.uid}</td>
             </tr>
             </tbody>
         </Table>
