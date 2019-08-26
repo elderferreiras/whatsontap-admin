@@ -1,13 +1,13 @@
 {
 	"auth": {
-		"whatsontapadmina3e0e5b2": {
+		"whatsontapadmina04b4c8b": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": []
 		}
 	},
 	"api": {
-		"whatsontapapi": {
+		"whatsontap": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {

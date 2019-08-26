@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "whatsontapadmina3e0e5b2_identitypool_a3e0e5b2",
+    "identityPoolName": "whatsontapadmina04b4c8b_identitypool_a04b4c8b",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "whatsoa3e0e5b2",
-    "userPoolName": "whatsontapadmina3e0e5b2_userpool_a3e0e5b2",
+    "resourceNameTruncated": "whatsoa04b4c8b",
+    "userPoolName": "whatsontapadmina04b4c8b_userpool_a04b4c8b",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "whatsoa3e0e5b2_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "whatsoa04b4c8b_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "whatsontapadmina3e0e5b2",
+    "resourceName": "whatsontapadmina04b4c8b",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -45,8 +45,5 @@
         ]
     },
     "useDefault": "default",
-    "usernameAttributes": [
-        "email"
-    ],
     "dependsOn": []
 }

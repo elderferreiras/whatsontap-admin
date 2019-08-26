@@ -66,7 +66,7 @@ const establishmentForm = (props) => {
                 <Form.Control value={props.establishment.uid} name="uid" onChange={props.changed}/>
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className="mb-5">
                 Submit
             </Button>
         </Form>

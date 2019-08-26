@@ -11,11 +11,6 @@ const sidebar = () => {
                     <i className="fas fa-fw fa-table"/>
                     <span>Establishments</span></Link>
             </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="/beers">
-                    <i className="fas fa-fw fa-beer"/>
-                    <span>Beers</span></Link>
-            </li>
         </ul>
     );
 };

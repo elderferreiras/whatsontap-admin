@@ -1,35 +1,18 @@
 {
-    "dev": {
+    "prod": {
         "awscloudformation": {
-            "AuthRoleName": "whatsontap-admin-dev-20190821190621-authRole",
-            "UnauthRoleArn": "arn:aws:iam::757599292990:role/whatsontap-admin-dev-20190821190621-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::757599292990:role/whatsontap-admin-dev-20190821190621-authRole",
+            "AuthRoleName": "whatsontap-admin-prod-20190825191103-authRole",
+            "UnauthRoleArn": "arn:aws:iam::757599292990:role/whatsontap-admin-prod-20190825191103-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::757599292990:role/whatsontap-admin-prod-20190825191103-authRole",
             "Region": "us-west-2",
-            "DeploymentBucketName": "whatsontap-admin-dev-20190821190621-deployment",
-            "UnauthRoleName": "whatsontap-admin-dev-20190821190621-unauthRole",
-            "StackName": "whatsontap-admin-dev-20190821190621",
-            "StackId": "arn:aws:cloudformation:us-west-2:757599292990:stack/whatsontap-admin-dev-20190821190621/0df2be90-c479-11e9-9932-066b98e74c72"
+            "DeploymentBucketName": "whatsontap-admin-prod-20190825191103-deployment",
+            "UnauthRoleName": "whatsontap-admin-prod-20190825191103-unauthRole",
+            "StackName": "whatsontap-admin-prod-20190825191103",
+            "StackId": "arn:aws:cloudformation:us-west-2:757599292990:stack/whatsontap-admin-prod-20190825191103/60226da0-c79e-11e9-9b9e-0a6b0666b1b0"
         },
         "categories": {
             "auth": {
-                "whatsontapadmina3e0e5b2": {}
-            }
-        }
-    },
-    "wotap": {
-        "awscloudformation": {
-            "AuthRoleName": "whatsontap-admin-wotap-20190824133615-authRole",
-            "UnauthRoleArn": "arn:aws:iam::757599292990:role/whatsontap-admin-wotap-20190824133615-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::757599292990:role/whatsontap-admin-wotap-20190824133615-authRole",
-            "Region": "us-west-2",
-            "DeploymentBucketName": "whatsontap-admin-wotap-20190824133615-deployment",
-            "UnauthRoleName": "whatsontap-admin-wotap-20190824133615-unauthRole",
-            "StackName": "whatsontap-admin-wotap-20190824133615",
-            "StackId": "arn:aws:cloudformation:us-west-2:757599292990:stack/whatsontap-admin-wotap-20190824133615/71655d50-c6a6-11e9-8c84-0a0f0b9aa76a"
-        },
-        "categories": {
-            "auth": {
-                "whatsontapadmina3e0e5b2": {}
+                "whatsontapadmina04b4c8b": {}
             }
         }
     }

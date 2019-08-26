@@ -4,6 +4,7 @@ import EstablishmentForm from '../EstablishmentForm/EstablishmentForm';
 import {API, graphqlOperation} from "aws-amplify";
 import * as mutations from '../../../graphql/mutations';
 import AddressSelector from '../../../helpers/addressSelector';
+import uuidv4 from 'uuid/v4';
 
 class EstablishmentCreate extends Component {
     state = {
@@ -46,9 +47,22 @@ class EstablishmentCreate extends Component {
     submitHandler = (event) => {
         event.preventDefault();
 
-        API.graphql(graphqlOperation(mutations.createEstablishment, {input: this.state.establishment})).then(res => {
+        const establishment = {...this.state.establishment};
+        const input = {};
+
+        for (let i in establishment) {
+            if(establishment.hasOwnProperty(i)) {
+                if(establishment[i].length) {
+                    input[i] = establishment[i];
+                }
+            }
+        }
+
+        input['id'] = uuidv4();
+
+        API.graphql(graphqlOperation(mutations.createEstablishment, {input: input})).then(res => {
             this.props.history.push({
-                pathname: '/establishments/show/' + res.data.createEstablishment.id
+                pathname: '/establishments/show/' + res.data.createEstablishment.uid
             });
         });
     };

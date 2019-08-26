@@ -22,7 +22,7 @@ class EstablishmentEdit extends Component {
     };
 
     componentDidMount() {
-        API.graphql(graphqlOperation(getEstablishment, {id: this.props.match.params.id})).then(res => {
+        API.graphql(graphqlOperation(getEstablishment, {uid: this.props.match.params.id})).then(res => {
             const establishment = {...this.state.establishment};
 
             establishment.id = res.data.getEstablishment.id;
@@ -70,9 +70,9 @@ class EstablishmentEdit extends Component {
         API.graphql(graphqlOperation(mutations.updateEstablishment, {
             input: this.state.establishment
         })).then(res => {
-            if(res.data.updateEstablishment && res.data.updateEstablishment.id) {
+            if(res.data.updateEstablishment && res.data.updateEstablishment.uid) {
                 this.props.history.push({
-                    pathname: '/establishments/show/' + res.data.updateEstablishment.id
+                    pathname: '/establishments/show/' + res.data.updateEstablishment.uid
                 });
             }
         });

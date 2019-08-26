@@ -10,7 +10,6 @@ import Amplify from 'aws-amplify';
 import aws_exports from './aws-exports';
 import {withAuthenticator} from "aws-amplify-react";
 import Establishments from "./containers/Establihsments/Establishments";
-import Beers from "./containers/Beers/Beers";
 import EstablishmentCreate from "./components/Establishment/EstablishmentCreate/EstablishmentCreate";
 import Establishment from "./components/Establishment/Establishment";
 import EstablishmentEdit from "./components/Establishment/EstablishmentEdit/EstablishmentEdit";
@@ -25,7 +24,6 @@ class App extends Component {
                 <div className="App">
                     <Navbar/>
                     <div id="wrapper">
-                        <Sidebar/>
                         <div id="content-wrapper">
                             <div className="container-fluid">
                                 <Route path="/" exact component={Establishments} />
@@ -34,7 +32,6 @@ class App extends Component {
                                 <Route path="/establishments/show/:id" component={Establishment} exact/>
                                 <Route path="/establishments/edit/:id" component={EstablishmentEdit} exact/>
                                 <Route path="/establishments/import" component={EstablishmentImport} exact/>
-                                <Route path="/beers/" component={Beers} exact/>
                             </div>
                             <Footer/>
                         </div>

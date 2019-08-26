@@ -1,4 +1,4 @@
-type Establishment @model {
+type Establishment @model @key(fields: ["uid"]){
   id: ID!
   name: String!
   streetAddress: String
@@ -7,9 +7,10 @@ type Establishment @model {
   zipcode: String
   phone: String
   website: String
-  uid: String
+  uid: String!
   beers: [Beer] @connection(name: "EstablishmentBeers")
 }
+
 type Beer @model {
   id: ID!
   name: String!
