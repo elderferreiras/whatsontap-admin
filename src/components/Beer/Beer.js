@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Col, Button, Dropdown} from "react-bootstrap";
+import {Card, Col, Button} from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 
 const beer = (props) => {

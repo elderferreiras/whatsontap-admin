@@ -3,6 +3,7 @@ import {API, graphqlOperation} from "aws-amplify";
 import {listEstablishments} from "../../graphql/queries";
 import {Button, Row, Col, Pagination} from 'react-bootstrap';
 import {Link} from "react-router-dom";
+import Autocomplete from "react-google-autocomplete";
 
 class Establishments extends Component {
     state = {
@@ -20,14 +21,14 @@ class Establishments extends Component {
     };
 
     listEstablishments = () => {
-        let variables = {limit: 20};
+        let variables = {limit: 10};
 
         if (this.state.nextToken) {
             variables.nextToken = this.state.nextToken;
         }
 
         if(this.state.search.length) {
-            variables.filter = { name: { contains: this.state.search} };
+            variables.uid = this.state.search;
         }
 
         API.graphql(graphqlOperation(listEstablishments, variables)).then(res => {
@@ -38,14 +39,16 @@ class Establishments extends Component {
         });
     };
 
-    searchHandler = (event) => {
-        this.setState({nextToken: null},  () => {
-            this.listEstablishments();
-        });
+    searchEstablishmentHandler = (place) => {
+        this.setState({search: place.place_id, nextToken: null});
+        this.listEstablishments();
     };
 
-    searchChange = (event) => {
-       this.setState({search: event.target.value});
+    searchChangedHandler = (event) => {
+        if ( ! event.target.value.length) {
+            this.setState({search: null});
+            this.listEstablishments();
+        }
     };
 
     render() {
@@ -68,12 +71,20 @@ class Establishments extends Component {
                     </Row>
 
                     <Row className="mb-2">
-                        <Col md="10" sm="8">
-                            <input type="text" name="search" value={this.state.search} onChange={this.searchChange} className="form-control" placeholder="Search..."/>
-                        </Col>
-                        <Col md="2" sm="4">
-                            <Button className="col-12" onClick={this.searchHandler}>Go!</Button>
-                        </Col>
+                        <Col md="12">
+                            <Autocomplete
+                                name="search"
+                                className="form-control"
+                                onPlaceSelected={(place) => {
+                                    this.searchEstablishmentHandler(place)
+                                }}
+                                onChange={this.searchChangedHandler}
+                                types={['establishment']}
+                                fields={['place_id']}
+                                componentRestrictions={{country: "us"}}
+                                style={{cursor:'pointer'}}
+                            />
+                            </Col>
                     </Row>
                     <div className="table-responsive">
                         <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">

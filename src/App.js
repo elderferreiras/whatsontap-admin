@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './App.scss';
 import { BrowserRouter as Router, Route } from "react-router-dom"
 
-import Sidebar from './components/UI/Sidebar/Sidebar';
 import Navbar from './components/UI/Nav/Nav';
 import Footer from './components/UI/Footer/Footer';
 
