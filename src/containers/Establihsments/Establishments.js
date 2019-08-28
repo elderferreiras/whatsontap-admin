@@ -82,7 +82,6 @@ class Establishments extends Component {
                                 types={['establishment']}
                                 fields={['place_id']}
                                 componentRestrictions={{country: "us"}}
-                                style={{cursor:'pointer'}}
                             />
                             </Col>
                     </Row>

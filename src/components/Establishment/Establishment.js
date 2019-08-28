@@ -26,7 +26,8 @@ class Establishment extends Component {
         },
         modalShow: false,
         modalLoading: false,
-        beerId: null
+        beerId: null,
+        modalAction: 'Create'
     };
 
     componentDidMount() {
@@ -52,7 +53,11 @@ class Establishment extends Component {
     };
 
     openModalHandler = (event, id) => {
-        this.setState({modalShow: true, beerId: id});
+        if(id) {
+            this.setState({modalShow: true, beerId: id, modalAction: 'Update'});
+        } else {
+            this.setState({modalShow: true, beerId: id, modalAction: 'Create'});
+        }
     };
 
     closeModalHandler = () => {
@@ -143,6 +148,7 @@ class Establishment extends Component {
                     hide={this.closeModalHandler}
                     save={this.saveBeerHandler}
                     beerId={this.state.beerId}
+                    action={this.state.modalAction}
                 />
 
                 <Button variant="light" onClick={this.openModalHandler} className="mt-3 mb-3">

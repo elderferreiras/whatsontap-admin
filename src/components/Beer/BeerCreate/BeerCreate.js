@@ -18,7 +18,7 @@ class BeerCreate extends Component {
             <Fragment>
                 <Modal show={this.props.show} onHide={this.props.hide}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Create Beer</Modal.Title>
+                        <Modal.Title>{this.props.action} Beer</Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>

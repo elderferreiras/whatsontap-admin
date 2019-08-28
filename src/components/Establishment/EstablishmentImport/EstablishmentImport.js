@@ -88,7 +88,7 @@ class establishmentImport extends Component {
                 }
             }
 
-            breweries = breweries.slice(0, 3000); //7173
+            breweries = breweries.slice(0, 1000); //7173
             for(let j in breweries) {
                if(breweries.hasOwnProperty(j)) {
                    const brewery = breweries[j];
