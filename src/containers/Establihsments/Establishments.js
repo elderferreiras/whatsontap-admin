@@ -4,20 +4,29 @@ import {listEstablishments} from "../../graphql/queries";
 import {Button, Row, Col, Pagination} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import Autocomplete from "react-google-autocomplete";
+import {Auth} from 'aws-amplify';
 
 class Establishments extends Component {
     state = {
         establishments: [],
         nextToken: null,
-        search: ''
+        search: '',
+        hasAccess: false
     };
 
     componentDidMount() {
-        this.listEstablishments();
+        Auth.currentSession()
+            .then(data => {
+                if (data.accessToken.payload['cognito:groups'].includes('ADMINISTRATOR')) {
+                    this.listEstablishments();
+                } else {
+                    document.getElementsByTagName('body')[0].innerHTML = "<p>You should not be here.</p>";
+                }
+            }).catch(err => console.log(err));
     }
 
     nextHandler = () => {
-       this.listEstablishments();
+        this.listEstablishments();
     };
 
     listEstablishments = () => {
@@ -27,7 +36,7 @@ class Establishments extends Component {
             variables.nextToken = this.state.nextToken;
         }
 
-        if(this.state.search.length) {
+        if (this.state.search.length) {
             variables.uid = this.state.search;
         }
 
@@ -45,7 +54,7 @@ class Establishments extends Component {
     };
 
     searchChangedHandler = (event) => {
-        if ( ! event.target.value.length) {
+        if (!event.target.value.length) {
             this.setState({search: null});
             this.listEstablishments();
         }
@@ -60,9 +69,9 @@ class Establishments extends Component {
                 <div className="card-body">
                     <Row className="mb-2">
                         <Col>
-                        <Link to="/establishments/create">
-                            <Button variant="light">Create Establishment</Button>
-                        </Link>
+                            <Link to="/establishments/create">
+                                <Button variant="light">Create Establishment</Button>
+                            </Link>
                         </Col>
 
                         <Link to="/establishments/import">
@@ -83,7 +92,7 @@ class Establishments extends Component {
                                 fields={['place_id']}
                                 componentRestrictions={{country: "us"}}
                             />
-                            </Col>
+                        </Col>
                     </Row>
                     <div className="table-responsive">
                         <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
